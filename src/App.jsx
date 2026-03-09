@@ -12,6 +12,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [totalCats, setTotalCats] = useState(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
 
   const [floatingIcons, setFloatingIcons] = useState([]);
 
@@ -67,7 +68,16 @@ function App() {
       setFloatingIcons(prev => prev.filter(icon => icon.id !== newIcon.id));
     }, 1500);
 
-    setCats((prevCats) => prevCats.filter((c) => c.id !== cat.id));
+    setCats((prevCats) => {
+      const remaining = prevCats.filter((c) => c.id !== cat.id);
+      if (remaining.length === 0) {
+        setIsGeneratingSummary(true);
+        setTimeout(() => {
+          setIsGeneratingSummary(false);
+        }, 2000);
+      }
+      return remaining;
+    });
 
     if (direction === 'like') {
       setLikedCats((prev) => [...prev, cat]);
@@ -79,10 +89,11 @@ function App() {
   const handleReset = () => {
     setLikedCats([]);
     setDislikedCats([]);
+    setIsGeneratingSummary(false);
     fetchCats();
   };
 
-  const isFinished = !isLoading && cats.length === 0;
+  const hasSwipedAll = !isLoading && cats.length === 0;
 
   return (
     <div className="w-full h-[100dvh] bg-neutral-950 text-white flex flex-col overflow-hidden relative selection:bg-pink-500/30">
@@ -111,12 +122,12 @@ function App() {
       </AnimatePresence>
 
       {/* Header */}
-      <header className={`w-full p-4 flex flex-col items-center justify-center z-50 shrink-0 mt-2 transition-all duration-300 ${!isFinished ? 'pointer-events-none' : ''} ${!isHeaderVisible ? 'opacity-0 invisible pointer-events-none' : 'opacity-100 visible'}`}>
+      <header className={`w-full p-4 flex flex-col items-center justify-center z-50 shrink-0 mt-2 transition-all duration-300 ${(!hasSwipedAll || isGeneratingSummary) ? 'pointer-events-none' : ''} ${!isHeaderVisible ? 'opacity-0 invisible pointer-events-none' : 'opacity-100 visible'}`}>
         <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 tracking-tight drop-shadow-md">
           Paws & Preferences
         </h1>
-        <p className={`font-medium font-bold mt-1 ${isFinished ? 'text-xl text-gray-300' : 'text-gray-400'}`}>
-          {isFinished ? (
+        <p className={`font-medium font-bold mt-1 ${hasSwipedAll && !isGeneratingSummary ? 'text-xl text-gray-300' : 'text-gray-400'}`}>
+          {hasSwipedAll && !isGeneratingSummary ? (
             <>You liked <span className="text-pink-500 font-bold">{likedCats.length}</span> out of {totalCats} cats!</>
           ) : (
             "Swipe or click the buttons below!"
@@ -136,7 +147,22 @@ function App() {
             </motion.div>
             <p className="font-medium animate-bounce text-lg">Summoning cute cats...</p>
           </div>
-        ) : isFinished ? (
+        ) : hasSwipedAll && isGeneratingSummary ? (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 gap-6"
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+            >
+              <Loader2 className="w-12 h-12 text-violet-500" />
+            </motion.div>
+            <p className="font-medium animate-pulse text-lg">Curating your perfect matches...</p>
+          </motion.div>
+        ) : hasSwipedAll ? (
           <Summary
             likedCats={likedCats}
             totalCats={totalCats}
@@ -147,7 +173,7 @@ function App() {
           <CardStack
             cats={cats}
             onSwipe={handleSwipe}
-            isFinished={isFinished}
+            isFinished={hasSwipedAll}
           />
         )}
       </main>

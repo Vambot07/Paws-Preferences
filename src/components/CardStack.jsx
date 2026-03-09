@@ -10,7 +10,7 @@ const CardStack = ({ cats, onSwipe, isFinished }) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full mx-auto p-4 relative pt-26 pb-32">
+        <div className="flex flex-1 flex-col items-center justify-center w-full mx-auto p-4 relative">
 
             {/*The Stack*/}
             <div className="relative w-full max-w-sm aspect-[3/4] max-h-[55vh] flex justify-center items-center">
@@ -50,7 +50,7 @@ const CardStack = ({ cats, onSwipe, isFinished }) => {
 
 
             {/*Buttons*/}
-            <div className="mt-16 flex bottom-10 left-0 right-0 flex justify-center gap-6 w-full z-50 pointer-events-none px-4">
+            <div className="mt-10 flex justify-center gap-6 w-full z-50 pointer-events-none px-4">
                 <button
                     onClick={() => visibleCats[0] && onSwipe('dislike', visibleCats[0])}
                     className="pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-full shadow-2xl hover:bg-white/20 hover:scale-110 active:scale-95 transition-all group"

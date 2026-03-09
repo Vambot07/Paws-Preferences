@@ -130,17 +130,19 @@ const Summary = ({ likedCats, totalCats, onReset, setHeaderVisible }) => {
                                 className="max-w-full max-h-[90vh] object-contain rounded-2xl"
                             />
 
-                            {/* Close Button */}
-                            <button
-                                onClick={() => {
-                                    setSelectedImage(null);
-                                    if (setHeaderVisible) setHeaderVisible(true);
-                                }}
-                                className="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white rounded-full p-2 transition-colors border border-white/20"
-                            >
-                                <X className="w-6 h-6" />
-                            </button>
+                            {/* Close Button placed globally outside the image card space but inside modal! */}
                         </motion.div>
+
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedImage(null);
+                                if (setHeaderVisible) setHeaderVisible(true);
+                            }}
+                            className="fixed top-6 right-6 z-[110] bg-black/60 hover:bg-black/90 text-white rounded-full p-3 transition-colors border border-white/30 backdrop-blur-md"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
