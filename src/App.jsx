@@ -148,7 +148,7 @@ function App() {
             <p className="font-medium animate-bounce text-lg">Summoning cute cats...</p>
           </div>
         ) : hasSwipedAll && isGeneratingSummary ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -160,7 +160,7 @@ function App() {
             >
               <Loader2 className="w-12 h-12 text-violet-500" />
             </motion.div>
-            <p className="font-medium animate-pulse text-lg">Curating your perfect matches...</p>
+            <p className="font-medium animate-pulse text-lg">Here are your cute cats...</p>
           </motion.div>
         ) : hasSwipedAll ? (
           <Summary

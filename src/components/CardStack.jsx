@@ -22,7 +22,7 @@ const CardStack = ({ cats, onSwipe, isFinished }) => {
                     [...visibleCats].reverse().map((cat, index) => {
                         const depthIndex = visibleCats.length - 1 - index;
                         const scale = 1 - (depthIndex * 0.05);
-                        const yOffset = depthIndex * 40;
+                        const yOffset = depthIndex * 25;
                         const isTop = index === visibleCats.length - 1;
 
                         return (
