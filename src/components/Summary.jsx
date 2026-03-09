@@ -120,29 +120,28 @@ const Summary = ({ likedCats, totalCats, onReset, setHeaderVisible }) => {
                             animate={{ scale: 1, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 25 } }}
                             exit={{ scale: 0.95, opacity: 0, transition: { duration: 0.1 } }}
 
-                            className="relative max-w-[90vw] max-h-[90vh] rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(236,72,153,0.15)] cursor-default bg-zinc-900 flex justify-center items-center"
+                            className="relative max-w-[90vw] max-h-[80dvh] rounded-2xl overflow-hidden shadow-[0_0_100px_rgba(236,72,153,0.15)] cursor-default bg-zinc-900 flex justify-center items-center"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <img
                                 src={`https://cataas.com/cat/${selectedImage.id}`}
                                 alt="Loved Cat Full Size"
 
-                                className="max-w-full max-h-[90vh] object-contain rounded-2xl"
+                                className="max-w-full max-h-[80dvh] object-contain rounded-2xl"
                             />
 
-                            {/* Close Button placed globally outside the image card space but inside modal! */}
+                            {/* Close Button safely inside the scaled wrapper */}
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedImage(null);
+                                    if (setHeaderVisible) setHeaderVisible(true);
+                                }}
+                                className="absolute top-2 right-2 md:top-4 md:right-4 z-[110] bg-black/60 hover:bg-black/90 text-white rounded-full p-2 transition-colors border border-white/30 backdrop-blur-md"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
                         </motion.div>
-
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedImage(null);
-                                if (setHeaderVisible) setHeaderVisible(true);
-                            }}
-                            className="absolute top-4 right-4 md:top-6 md:right-6 z-[110] bg-black/60 hover:bg-black/90 text-white rounded-full p-2 md:p-3 transition-colors border border-white/30 backdrop-blur-md"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
