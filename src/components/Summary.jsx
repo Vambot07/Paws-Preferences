@@ -139,7 +139,7 @@ const Summary = ({ likedCats, totalCats, onReset, setHeaderVisible }) => {
                                 setSelectedImage(null);
                                 if (setHeaderVisible) setHeaderVisible(true);
                             }}
-                            className="fixed top-6 right-6 z-[110] bg-black/60 hover:bg-black/90 text-white rounded-full p-3 transition-colors border border-white/30 backdrop-blur-md"
+                            className="absolute top-4 right-4 md:top-6 md:right-6 z-[110] bg-black/60 hover:bg-black/90 text-white rounded-full p-2 md:p-3 transition-colors border border-white/30 backdrop-blur-md"
                         >
                             <X className="w-6 h-6" />
                         </button>
