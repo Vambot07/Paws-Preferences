@@ -1,16 +1,59 @@
-# React + Vite
+# Paws & Preferences 🐾
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun, interactive Tinder-style swiping application for discovering and rating cute cats! Built with React, Tailwind CSS, and Framer Motion.
 
-Currently, two official plugins are available:
+## Features ✨
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   **Tinder-Style Swiping:** Swipe right to "like" a cat or swipe left to "pass". You can also use the heart and "X" buttons!
+*   **Haptic Feedback:** Enjoy subtle phone vibrations when swiping or clicking buttons (on supported devices).
+*   **Dynamic Summary View:** When you finish swiping through your deck of cats, view a polished dashboard summarizing your top picks!
+*   **Full-Screen Modal:** Click on any of your liked cats in the summary view to see them in a full-screen, high-quality modal.
+*   **Beautiful Animations:** Smooth, bouncy card animations and satisfying visual feedback built with `framer-motion` and `canvas-confetti`.
+*   **Live Data:** Fresh cat pictures are fetched dynamically from the Cataas (Cats as a Service) API.
 
-## React Compiler
+## Tech Stack 🛠️
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+*   **Frontend Library:** [React 18](https://react.dev/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Build Tool:** [Vite](https://vitejs.dev/)
+*   **API:** [Cataas API](https://cataas.com/)
 
-## Expanding the ESLint configuration
+## Getting Started 🚀
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To run this project locally, simply follow these steps:
+
+### Prerequisites
+
+You will need [Node.js](https://nodejs.org/en/) installed on your machine.
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Vambot07/Paws-Preferences.git
+    cd Paws-Preferences
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open your browser:**
+    Navigate to `http://localhost:5173` (or the port Vite provides) to start swiping!
+
+## How to Play 🎮
+
+1.  When the app loads, you will be presented with a stack of cat cards.
+2.  **To Like a Cat:** Swipe the top card to the right, or click the pink Heart button.
+3.  **To Pass:** Swipe the top card to the left, or click the red 'X' button.
+4.  Once all cats have been swiped, you will automatically be taken to a summary screen displaying all the cats you liked.
+5.  Click on any cat in the summary to enlarge it.
+6.  Click the **"Find More Cats"** button to fetch a new deck and play again!
